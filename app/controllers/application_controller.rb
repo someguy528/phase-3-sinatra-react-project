@@ -65,7 +65,6 @@ class ApplicationController < Sinatra::Base
   patch "/flights/:flight_id/bookings/:booking_id" do
     patched_booking = Booking.find(params[:booking_id])
     patched_booking.update(
-      # passenger_id: params[:passenger_id],
       seat: params[:seat]
     )
     patched_booking.to_json
@@ -98,7 +97,7 @@ class ApplicationController < Sinatra::Base
   patch "/bookings/:booking_id" do
     pacthed_Booking = Booking.find(params[:booking_id])
     pacthed_Booking.update(
-      passenger_id: params[:passenger_id],
+      # passenger_id: params[:passenger_id],
       seat: params[:seat]
     )
     pacthed_Booking.to_json
