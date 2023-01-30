@@ -26,11 +26,10 @@ class ApplicationController < Sinatra::Base
     })
   end
 
+  # being used
   get "/flights" do
     Flight.all.to_json(except: :plane_id, include: [:plane , {
       bookings: {
-        # except: [:flight_id, :passenger_id],
-        # except: :flight_id,
         include: :passenger
       }
     }  ] )
@@ -94,15 +93,16 @@ class ApplicationController < Sinatra::Base
     new_Booking.to_json
   end
 
+  # being used
   patch "/bookings/:booking_id" do
     pacthed_Booking = Booking.find(params[:booking_id])
     pacthed_Booking.update(
-      # passenger_id: params[:passenger_id],
       seat: params[:seat]
     )
     pacthed_Booking.to_json
   end
 
+  # being used
   delete "/bookings/:booking_id" do 
     deleted_booking = Booking.find(params[:booking_id])
     deleted_booking.destroy
