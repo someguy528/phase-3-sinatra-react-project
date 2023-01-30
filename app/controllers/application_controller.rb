@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     Flight.all.to_json(except: :plane_id, include: [:plane , {
       bookings: {
         # except: [:flight_id, :passenger_id],
-        except: :flight_id,
+        # except: :flight_id,
         include: :passenger
       }
     }  ] )
