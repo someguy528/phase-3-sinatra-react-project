@@ -1,3 +1,5 @@
+require 'pry'
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -80,14 +82,24 @@ class ApplicationController < Sinatra::Base
     Booking.all.to_json
   end
 
+  # being used
+  get '/bookings/most' do
+    Booking.most_bookings.to_json
+  end
+  get '/bookings/most_bookings_passengers' do
+    Booking.most_bookings.map{|booking| Passenger.find_by(id: booking[0])}.to_json
+  end
+
   get "/bookings/:booking_id" do
     Booking.find(params[:booking_id]).to_json(include: :passenger)
   end
 
+  # being used
   post "/bookings" do
+    passenger = Passenger.find_or_create_by(name: params[:name])
     new_Booking = Booking.create(
       seat: params[:seat],
-      passenger_id: params[:passenger_id],
+      passenger_id: passenger[:id],
       flight_id: params[:flight_id]
     )
     new_Booking.to_json
@@ -117,7 +129,9 @@ class ApplicationController < Sinatra::Base
     #     include: :flight
     #   }})
   end
+
   
+
   get "/passengers/:passenger_id" do
     Passenger.find(params[:passenger_id]).to_json(include: :bookings)
   end
