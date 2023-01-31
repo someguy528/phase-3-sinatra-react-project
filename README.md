@@ -1,3 +1,9 @@
+This project is a fork of the existing Phase 3 project repository.  Here we host the information of flights, bookings, passengers, and planes.
+
+The Frontend React project is here: https://github.com/someguy528/phase-3-project-frontend-react
+
+The original guidelines are below:
+
 # Phase 3 Project Guidelines
 
 ## Learning Goals
