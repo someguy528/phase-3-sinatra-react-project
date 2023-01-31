@@ -84,9 +84,18 @@ class ApplicationController < Sinatra::Base
     Booking.most_bookings.map{|booking| Passenger.find_by(id: booking[0])}.to_json
   end
 
+  # being used
+  get "/passengers/with_bookings_and_flights" do
+    Passenger.all.to_json(include: {
+      bookings: {
+        except: [:passenger_id, :flight_id],
+        include: :flight
+      }})
+  end
 
 
-  # used for testing
+
+  # rest used for testing
 
   get "/planes/:id" do
     Plane.find(params[:id]).to_json(include: {
@@ -111,6 +120,8 @@ class ApplicationController < Sinatra::Base
   get "/passengers" do
     Passenger.all.to_json
   end
+
+  
 
   get "/passengers/:passenger_id" do
     Passenger.find(params[:passenger_id]).to_json(include: :bookings)
