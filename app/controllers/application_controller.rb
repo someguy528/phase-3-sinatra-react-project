@@ -80,13 +80,13 @@ class ApplicationController < Sinatra::Base
   end
 
   # being used
-  get '/bookings/most_bookings_passengers' do
-    Booking.most_bookings_passengers.to_json
+  get '/passengers/most_bookings_passengers' do
+    Passenger.most_bookings_passengers.to_json
   end
 
   # being used
-  get '/bookings/passengers_grouped_with_bookings' do
-    Booking.passengers_grouped_with_bookings.to_json
+  get '/passengers/passengers_grouped_with_bookings' do
+    Passenger.passengers_grouped_with_bookings.to_json
   end
 
   # being used
