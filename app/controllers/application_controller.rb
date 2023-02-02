@@ -75,13 +75,18 @@ class ApplicationController < Sinatra::Base
   end
 
   # being used
-  get '/bookings/most' do
-    Booking.most_bookings.to_json
+  get '/bookings/most_bookings_amt' do
+    Booking.most_bookings_amt.to_json
   end
 
   # being used
   get '/bookings/most_bookings_passengers' do
-    Booking.most_bookings.map{|booking| Passenger.find_by(id: booking[0])}.to_json
+    Booking.most_bookings_passengers.to_json
+  end
+
+  # being used
+  get '/bookings/passengers_grouped_with_bookings' do
+    Booking.passengers_grouped_with_bookings.to_json
   end
 
   # being used
